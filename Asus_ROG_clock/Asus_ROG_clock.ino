@@ -1,5 +1,5 @@
-#include <dht11.h> // dht11 kütüphanesini ekliyoruz.
-#define DHT11PIN A0 // DHT11PIN olarak Dijital 2"yi belirliyoruz.
+#include <dht11.h>
+#define DHT11PIN A0
 #include <LiquidCrystal_I2C.h>
 #include <DS3231.h>
 #include<Wire.h>
