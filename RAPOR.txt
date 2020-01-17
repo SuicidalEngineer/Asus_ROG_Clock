@@ -1,0 +1,76 @@
+Yaþ ilerledikçe insanlarýn görme duyusunda 
+sýkýntýlar boy göstermeye baþlar. Ayný zamanda 
+vücut da sýcaklýða çok daha duyarlý ve koþullara 
+çok daha hassas hale gelir. Farklý illerden ,
+akrabalarýmýz istanbula geldiklerinde genelde bizde 
+kaldýklarý için neredeyse 7 gün 24 saat her saat baþý, 
+bazen bu aralýk daha da kýsa olabiliyor, insanlara 
+sýcaklýðý söylemek zorunda kalýyordum. Çünkü termometrenin
+üzerindeki yazýlar çok küçüktü ve teknolojik ürünler 
+kendileri için fazla "karmaþýk" kalýyordu. Ben de bu durumdan 
+biraz sýkýlmaya baþladýðým için bir çözüm arayýþýna gittim. 
+Eninde sonunda ise Arduino kullanarak benim yaptýðým iþi 
+otomatik olarak yapan bir sistem kurmaya karar verdim.
+
+Öncelikle ufak bir araþtýrma yaparak kafamdas bir plan 
+oluþturdum. Sýcaklýðý renk ile ifade edecektim. Fakat tam bir 
+ölçüm yapabilmek için bilgileri ekrana da basmak zorundaydým.
+Son olarak karar kýldýðým parçalar ise þunlardý:
+
+ Arduino Uno
+ 16x2 LCD (I2C Modülü ile)
+ DS3231 Gerçek Zamanlý Saat
+ DHT11 Sýcaklýk ve Nem Sensörü
+ Küçük veya Orta Boy Breadboard
+ 1 x 10K Ohm Direnç
+ 3 x 330K Ohm Direnç
+ 1 x RGB LED
+ 15 x M-M Jumper kablo
+ 8 x F-M Jumper kablo
+
+En baþlarda kafamda saat için ayrý bir modül almak yoktu. 
+Arduino yüklediðim kodla saat 12.00 dan itibaren kendisi sayýyordu. 
+Fakat her güç kesintisinde saat kendisini sýfýrlýyordu ve elle tekrar 
+ayarlamak gerekiyordu. Burada ise DS3231RTC modülü devreye girdi. Ayrý 
+bir pile sahip olduðu için güç kesintisinde dahi saymaya devam 
+edebiliyordu. Bu sorunsal da böylelikle çözüldü. bir sonraki adým ise 
+sýcaklýðý ölçüp bunu renklere dökmekti. Aslýnda DS3231 kendi içerisinde
+bir sýcaklýk ölçer bulunduruyor fakat ben tam güvenemediðim için sýcaklýk
+ölçümü iþine özel yapýlmýþ ayrý bir modül almaya karar verdim. DHT11 bu 
+gereksinimi nem ve sýcaklýk ölçümü için üretildiði için rahatça karþýladý.
+Sýcaklýk deðerlerine göre renk çýkýþý alabilmek için ise sensörün ölçtüðü 
+deðer aralýklarýna özel RGB LED'in içindeki farklý ledlerinin, RGB LED kendi 
+içinde Kýrmýzý, Yeþil ve Mavi olmak üzere 3 farklý Led bulundurur, belirli bir 
+düzene göre yanmasýný saðlayarak her 10 santigrat derecelik aralýða farklý 
+bir renk atadým.
+
+ 00 - 10 / Beyaz
+ 10 - 20 / Cyan
+ 20 - 30 / Yeþil
+ 30 - 40 / Sarý
+ 40 - 50 / Kýrmýzý
+
+Geriye sadece bu elde ettiðim bilgileri ekrana dökmek kalýyordu. Bunun için 16x2 
+bir LCD Ekran'ýn yeterli olduðuna karar verdim ve kablo sayýsýný kayda deðer bir 
+düzeyde azaltmak için de arkasýna bir I2C modülü lehimledim. Kalan tek þey ise elde 
+ettiðim bilgileri LCD'de spesifik yerler belirleyip oralarda gözükmesini saðlamaktý.
+Sadece sýcaklýðý göstermek ekrandaki çoðu alanýn boþa gitmesi demekti. Bu sebepten 
+yukarýda belirttiðim DS3231 Modülü'nü alýp projeyi bir saat merkezinde þekillendirdim. 
+Böylece projenin iþlevi de kayda deðer bir seviyede artmýþ oldu. Asýl amagý bu olmasa 
+bile projeyi ise günümüzdeki oyuncu ekipmanlarýnýn RGB LED ile doldurulmasýna gönderme 
+yapmak için Asus RGB Clock olarak isimlendirdim. 
+
+Bu sayede sürekli birilerine ne saati ne de sýcaklýðý söylememe gerek kalmýþ oldu. Hem 
+herkes ihtiyacý olan bilgiye rahatlýkla kendisi ulaþabilmiþ oldu, hem ben de kendimi biraz 
+da olsun rahatlatmýþ oldum.
+
+
+
+
+
+
+
+
+
+
+
